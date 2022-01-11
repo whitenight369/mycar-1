@@ -19,6 +19,9 @@
 .env.production.local
 笔记.txt
 面试笔记.txt
+错误.txt
+分页.txt
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
