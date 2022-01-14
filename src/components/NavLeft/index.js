@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'antd';
+import { NavLink } from 'react-router-dom';
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 import menuList from './../../config/menuConfig'
 import './index.less'
@@ -21,7 +22,11 @@ export default class NavLeft extends Component {
                 )
             }else{
                 // 没有子菜单证明是二级菜单 直接输出DOM就ok
-              return  <Menu.Item title={item.title} key={item.key} >{item.title}</Menu.Item>
+              return  (
+              <Menu.Item title={item.title} key={item.key} >
+                  <NavLink to={item.key}>{item.title}</NavLink>
+                  {/* {item.title} */}
+              </Menu.Item>)
             }
         })
     }

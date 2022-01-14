@@ -23,7 +23,6 @@ export default class Header extends Component {
             axios(
                 "https://devapi.qweather.com/v7/weather/3d?location="+city+"&key=f7b02327dbcb41cebc8dd7bd82a4c2d8"
             ).then(res=>{
-                console.log(res);
                 if(res.status===200){
                     this.setState({
                         weather:res.data.daily[0].textDay
