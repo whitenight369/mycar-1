@@ -1,16 +1,18 @@
 @import './default.less';
 .container{
     .nav-left{//左侧区域
-        color: #ffffff;
-        height: calc(100vh);
-        background-color: #002140;
+        width: 15%;
+        // height: calc(100vh);
+        background-color: @colorS;
+        color: @colorM;
     }
     .main{//右侧区域
         height: calc(100vh);
         background-color: @colorL;
+        overflow: auto;
     }
     .content{
         position: relative;
-        padding: 20px;
+        padding: 20px; 
     }
 }

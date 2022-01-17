@@ -3,11 +3,10 @@ import React, { Component } from 'react'
 import  Header  from './components/Header'
 import  Footer  from './components/Footer'
 import NavLeft from './components/NavLeft'
-import './style/common.less'
-import Buttons from './pages/ui/Buttons'
-import Home from './pages/home'
+import './style/common.less';
 export default class Admin extends Component {
     render() {
+        console.log(this.props);
         return (
             <Row className='container'>
                 <Col span="4" className='nav-left'>

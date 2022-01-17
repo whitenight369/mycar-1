@@ -3,7 +3,7 @@ import { Menu } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 import menuList from './../../config/menuConfig'
-import './index.less'
+import './index.less';
 
 const { SubMenu } = Menu;
 export default class NavLeft extends Component {
