@@ -6,7 +6,6 @@ import NavLeft from './components/NavLeft'
 import './style/common.less';
 export default class Admin extends Component {
     render() {
-        console.log(this.props);
         return (
             <Row className='container'>
                 <Col span="4" className='nav-left'>
