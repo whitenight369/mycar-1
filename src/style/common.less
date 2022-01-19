@@ -17,3 +17,13 @@
         padding: 20px; 
     }
 }
+// 城市管理的边框问题  加了bordered之后边框重合会变粗 所以用margin向外拓展一下   
+.content-wrap{
+    background-color: #ffffff;
+    border: 1px solid #e8e8e8;
+    margin-top: -3px;
+    .ant-table-wrapper{
+        margin-left: -1px;
+        margin-right: -2px;
+    }
+}
