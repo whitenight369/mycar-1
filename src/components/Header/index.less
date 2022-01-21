@@ -1,13 +1,27 @@
 @import './../../style/default.less';
 .header{
+    width: 100%;
     background-color: @colorM;
     .header-top{
         height: 60px;
         line-height:60px;
         padding: 0 20px;
         text-align: right;
+        .logo-ant{
+            line-height: 55px;
+            text-align: left;
+            img{
+                height: 55px;
+                vertical-align: middle;
+            }
+            span{
+                margin-left: 15px;
+                font-size: 18px;
+            }
+        }
         a{
             margin-left: 20px;
+            color: azure;
         }
     }
     .breadcrumb{
@@ -36,5 +50,17 @@
                 margin-right: 10px;
             }
         }
+    }
+}
+// common 页面简单头
+.simple-page{
+    .header-top{
+        background-color: #1890ff;
+        color: @colorM;
+    }
+    .ant_form,
+    .ant-col-12,
+    .weather{
+        display: none;
     }
 }

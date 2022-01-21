@@ -44,7 +44,7 @@ export default class Basic extends Component {
             })
         })
     }
-
+    //每一行的点击事件 
     onRowClick=(record,index)=>{
         //record是点击行数的dom节点
         let selectKey=[index];//保存点击行数的索引

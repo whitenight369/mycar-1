@@ -104,18 +104,11 @@ export default class City extends Component {
     }
 }
 class FilterForm extends Component{
-    onFinish=(value)=>{
-        console.log(value);
-    }
-    onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-        message.info("注册失败")
-      };
     render(){
         return (
             <Form layout='inline'>
                 <FormItem label="城市">
-                    <Select placeholder="请选择" style={{width:100}} onChange={this.onFinish}>
+                    <Select placeholder="请选择" style={{width:100}}>
                         <Option value="">全部</Option>
                         <Option value="1">北京市</Option>
                         <Option value="2">天津市</Option>
@@ -123,21 +116,21 @@ class FilterForm extends Component{
                     </Select>
                 </FormItem>
                 <FormItem label="用车模式" >
-                    <Select placeholder="全部" style={{width:140}} onChange={this.onFinish}>
+                    <Select placeholder="全部" style={{width:140}}>
                         <Option value="">全部</Option>
                         <Option value="2">指定停车点模式</Option>
                         <Option value="3">禁停区模式</Option>
                     </Select>
                 </FormItem>
                 <FormItem label="运营模式" >
-                    <Select placeholder="全部" style={{width:80}} onChange={this.onFinish}>
+                    <Select placeholder="全部" style={{width:80}}>
                         <Option value="">全部</Option>
                         <Option value="2">自营</Option>
                         <Option value="3">加盟</Option>
                     </Select>
                 </FormItem>
                 <FormItem label="加盟商授权状态" >
-                    <Select placeholder="全部" style={{width:100}} onChange={this.onFinish}>
+                    <Select placeholder="全部" style={{width:100}}>
                         <Option value="">全部</Option>
                         <Option value="2">已授权</Option>
                         <Option value="3">未授权</Option>

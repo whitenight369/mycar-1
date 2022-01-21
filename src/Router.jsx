@@ -17,14 +17,22 @@ import Register from './pages/form/Register';
 import Basic from './pages/table/Basic';
 import HighTable from './pages/table/HighTable';
 import City from './pages/city/index';
+import Order from './pages/order/index';
+import Detail from './pages/order/Detail';
+import Common from './Common';
 export default class IRouter extends Component {
     render() {
         return (
             <HashRouter>
                 <App>
+                <Switch>
+                    <Route path="/common" render={()=>
+                        <Common>
+                            <Route path="/common/order/detail/:orderId" component={Detail} />
+                        </Common>
+                    } />
                     <Route path="/" render={()=>
                         <Admin>
-                            <Switch>
                             <Route path="/ui/buttons" component={Buttons} />
                             <Route path="/ui/modals" component={Modals} />
                             <Route path="/ui/loadings" component={Loading} />
@@ -38,12 +46,14 @@ export default class IRouter extends Component {
                             <Route path="/table/basic" component={Basic} />
                             <Route path="/table/high" component={HighTable} />
                             <Route path="/city" component={City} />
+                            <Route path="/order" component={Order} />
                             <Route component={NoMatch} />
-                            </Switch>
+
                         </Admin>
                     } />   
                     <Route path="/login" component={Login} />
                     <Route path="/order/detail" component={Login} />
+                    </Switch>
                 </App>
             </HashRouter>
         )
