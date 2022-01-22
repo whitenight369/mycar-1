@@ -47,12 +47,14 @@ export default class IRouter extends Component {
                             <Route path="/table/high" component={HighTable} />
                             <Route path="/city" component={City} />
                             <Route path="/order" component={Order} />
-                            <Route component={NoMatch} />
-
+                            <Route  component={NoMatch} />
                         </Admin>
+
                     } />   
+                    
                     <Route path="/login" component={Login} />
                     <Route path="/order/detail" component={Login} />
+
                     </Switch>
                 </App>
             </HashRouter>

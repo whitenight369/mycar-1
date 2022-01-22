@@ -1,7 +1,29 @@
 import JsonP from 'jsonp';
 import axios from 'axios';
 import { Modal } from 'antd';
+import utils from './../utils/utils'
 export default class Axios{
+    static requestList(_this,url,params,isMock){
+        var data={
+            params,
+            isMock
+        }
+        this.ajax({
+            url,data
+        }).then(res=>{
+                let list=res.data.list.map((value,index)=>{
+                  value.key=index;
+                  return value;
+                })
+                _this.setState({
+                      list,
+                      pagination:utils.pagination(res,current=>{
+                          _this.params.page=current;
+                          _this.request();
+                      })
+                  })
+        })
+    }
     static jsonp(options){
         return new Promise((resolve,reject)=>{
             JsonP(options.url,{
@@ -23,7 +45,13 @@ export default class Axios{
             loading=document.getElementById("ajaxLoading");
             loading.style.display="block";
         }
-        const baseApi="https://www.fastmock.site/mock/e6478be5d4a36a31d8658b1c558c8d09/car";
+        let baseApi=""
+        if(options.isMock){
+            baseApi="https://www.fastmock.site/mock/e6478be5d4a36a31d8658b1c558c8d09/car";
+        }else{
+            baseApi="https://www.fastmock.site/mock/e6478be5d4a36a31d8658b1c558c8d09/car";
+        }
+        
         return new Promise((resolve,reject)=>{
             axios({
                 url:options.url,

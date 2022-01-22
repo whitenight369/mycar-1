@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import {Card,Table,Button,Form,Select,Modal,message, DatePicker} from 'antd';
 import axios from '../../axios';
 import utils from '../../utils/utils';
+import BaseForm from './../../components/BaseForm'
+import ETable from '../../components/ETable';
 const {Option} =Select;
 const FormItem=Form.Item;
 export default class Order extends Component {
@@ -15,39 +17,60 @@ export default class Order extends Component {
       {
         type:"SELECT",
         label:"城市",
+        field:"city",
         placeholder:"全部",
         initialValue:1,
+        width:120,
         list:[{id:0,name:"全部"},{id:1,name:"北京市"},{id:2,name:"天津市"},{id:3,name:"上海市"}]
+      },
+      {
+        type:"时间查询",
+      },
+      {
+        type:"SELECT",
+        label:"订单状态",
+        field:"status",
+        placeholder:"全部",
+        initialValue:1,
+        width:120,
+        list:[{id:0,name:"全部"},{id:1,name:"进行中"},{id:2,name:"已完成"}]
       }
     ]
 
     componentDidMount(){
         this.request()
     }
+
+    handleFilter=(params)=>{
+          this.params=params;
+          this.request()
+    }
+
+
     // 默认请求接口数据
     request=()=>{
         let _this=this;
-        axios.ajax({
-            url:"/order/list",
-            data:{
-                params:{
-                    page:this.params.page
-                }
-            }
-        }).then(res=>{
-            if(res.code==="0000"){
-                this.setState({
-                    list:res.data.list.map((value,index)=>{
-                      value.key=index;
-                      return value;
-                    }),
-                    pagination:utils.pagination(res,current=>{
-                        _this.params.page=current;
-                        _this.request();
-                    })
-                })
-            }
-        })
+        axios.requestList(this,'/order/list',this.params,true)
+        // axios.ajax({
+        //     url:"/order/list",
+        //     data:{
+        //         params:this.params
+        //     }
+        // }).then(res=>{
+        //     if(res.code==="0000"){
+        //       let list=res.data.list.map((value,index)=>{
+        //         value.key=index;
+        //         return value;
+        //       }),
+        //         this.setState({
+        //             list,
+        //             pagination:utils.pagination(res,current=>{
+        //                 _this.params.page=current;
+        //                 _this.request();
+        //             })
+        //         })
+        //     }
+        // })
     }
     // 结束订单
     handleConfirm=()=>{
@@ -86,15 +109,7 @@ export default class Order extends Component {
         }
       }) 
     }
-    // 每一行的点击事件
-    onRowClick=(value,index)=>{
-      //record是点击行数的dom节点
-      let selectKey=[index];//保存点击行数的索引
-      this.setState({
-          selectedRowKeys:selectKey,
-          selectedItem:value
-      })
-    }
+
     // 订单详情
     openOrderDetail=()=>{
       let item=this.state.selectedItem;
@@ -150,27 +165,26 @@ export default class Order extends Component {
             type:"radio",
             selectedRowKeys: this.state.selectedRowKeys, 
           }
+          console.log(this.state.selectedRowKeys);
         return (
             <section>
                <Card>
-                <FilterForm/>
+                <BaseForm formList={this.formList} filterSubmit={this.handleFilter} />
                </Card>
                <Card style={{marginTop:10}}>
                     <Button type='primary' onClick={this.openOrderDetail}>订单详情</Button>
                     <Button type='primary' style={{marginLeft:10}} onClick={this.handleConfirm}>结束订单</Button>
                </Card>
                <div className='content-wrap'>
-                <Table
-                        rowSelection={rowSelection}
-                        onRow={(value,index)=>{
-                          return {
-                            onClick:()=>this.onRowClick(value,index)
-                          }
-                        }}
-                        bordered
-                        columns={columns}
-                        dataSource={this.state.list}
-                        pagination={this.state.pagination}
+                    <ETable
+                      selectedIds={this.state.selectedIds}
+                      selectedItem={this.state.selectedItem}
+                      rowSelection={rowSelection}
+                      columns={columns}
+                      updateSelectedItem={utils.updateSelectedItem.bind(this)}
+                      dataSource={this.state.list}
+                      selectedRowKeys={this.state.selectedRowKeys}
+                      pagination={this.state.pagination}
                     />
                </div>
                <Modal  
@@ -196,36 +210,4 @@ export default class Order extends Component {
     }
 }
 
-class FilterForm extends Component{
-    render(){
-        return (
-            <Form layout='inline'>
-                <FormItem label="城市">
-                    <Select placeholder="请选择" style={{width:100}}>
-                        <Option value="">全部</Option>
-                        <Option value="1">北京市</Option>
-                        <Option value="2">天津市</Option>
-                        <Option value="3">深圳市</Option>
-                    </Select>
-                </FormItem>
-                <FormItem label="订单时间"  >
-                    <DatePicker showTime name="start_time" />
-                </FormItem>
-                <FormItem>
-                    <DatePicker showTime style={{marginLeft:10}} name="end_time" />
-                </FormItem>
-                <FormItem label="订单状态" >
-                    <Select placeholder="全部" style={{width:120}} >
-                        <Option value="">全部</Option>
-                        <Option value="2">进行中</Option>
-                        <Option value="3">结束行程</Option>
-                    </Select>
-                </FormItem>
-                <FormItem>
-                    <Button type='primary' style={{margin:"0px 20px"}}>查询</Button>
-                    <Button>重置</Button>
-                </FormItem>
-            </Form>
-        )
-    }
-}
+
