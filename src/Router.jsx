@@ -19,7 +19,9 @@ import HighTable from './pages/table/HighTable';
 import City from './pages/city/index';
 import Order from './pages/order/index';
 import Detail from './pages/order/Detail';
+import BikeMap from './pages/map/BikeMap';
 import Common from './Common';
+import User from './pages/user';
 export default class IRouter extends Component {
     render() {
         return (
@@ -33,6 +35,7 @@ export default class IRouter extends Component {
                     } />
                     <Route path="/" render={()=>
                         <Admin>
+                            <Switch>
                             <Route path="/ui/buttons" component={Buttons} />
                             <Route path="/ui/modals" component={Modals} />
                             <Route path="/ui/loadings" component={Loading} />
@@ -47,7 +50,10 @@ export default class IRouter extends Component {
                             <Route path="/table/high" component={HighTable} />
                             <Route path="/city" component={City} />
                             <Route path="/order" component={Order} />
+                            <Route path="/user" component={User} />
+                            <Route path="/bikeMap" component={BikeMap} />
                             <Route  component={NoMatch} />
+                            </Switch>
                         </Admin>
 
                     } />   

@@ -27,7 +27,7 @@ export default class FilterForm extends Component{
                 let placeholder=item.placeholder;
                 let width=item.width;
                 if(item.type==="时间查询"){
-                    const begin_time=<FormItem name={"start_time"}  key={field} >
+                    const begin_time=<FormItem name={"start_time"} label={label}  key={field} >
                                          <DatePicker showTime format='YYYY-MM-DD HH:mm:ss'   placeholder={placeholder} />
                                      </FormItem>;
                     formListItem.push(begin_time);
@@ -56,6 +56,20 @@ export default class FilterForm extends Component{
                         </Checkbox>
                     </FormItem>;
                     formListItem.push(CHECKBOX);
+                }else 
+                if(item.type==="datapicker"){//文本框
+                    const Date=<FormItem name={field} key={field} label='~' colon={false} >
+                    <DatePicker showTime  format='YYYY-MM-DD HH:mm:ss' placeholder={placeholder} />
+                            </FormItem>;
+                        formListItem.push(Date);
+                }else
+                if(item.type==="城市"){//下拉框
+                    const city=<FormItem name="city"  label="城市" key="city" >
+                       <Select  placeholder={placeholder} defaultValue="0"  style={{width:80}}>
+                            {utils.getOptionList([{id:"0",name:"全部"},{id:"1",name:"北京"},{id:"2",name:"上海"},{id:"3",name:"天津"},{id:"4",name:"杭州"}])}
+                        </Select>
+                    </FormItem>;
+                    formListItem.push(city);
                 }
             })
         }

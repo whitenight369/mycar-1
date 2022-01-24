@@ -6,7 +6,7 @@ export default class ETable extends React.Component{
     onRowClick=(record,index)=>{
         let rowSelection= this.props.rowSelection;
         console.log(rowSelection);      
-        if(rowSelection.type=="checkbox"){
+        if(rowSelection=="checkbox"){
             console.log("hhhh");
             // 如果是复选框  接收id  Dom数据 以及索引
             let selectedRowKeys=this.props.selectedRowKeys;//索引
@@ -47,12 +47,11 @@ export default class ETable extends React.Component{
         }
         if(row_selection===false||row_selection===null){
             row_selection=false;
-        }else if(row_selection.type=="checkbox"){
+        }else if(row_selection=="checkbox"){
             rowSelection.type="checkbox";
         }else{
             row_selection="radio";
         }
-        console.log(rowSelection);
         return (
             <Table
             bordered

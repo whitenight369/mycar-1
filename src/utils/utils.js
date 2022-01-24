@@ -44,6 +44,7 @@ export default{
                 selectedRowKeys
             }) 
         }
+        // console.log(selectedItem);
     }
 
 }
