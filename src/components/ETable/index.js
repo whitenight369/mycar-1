@@ -4,8 +4,7 @@ import { Table } from 'antd';
 export default class ETable extends React.Component{
 
     onRowClick=(record,index)=>{
-        let rowSelection= this.props.rowSelection;
-        console.log(rowSelection);      
+        let rowSelection= this.props.rowSelection;   
         if(rowSelection=="checkbox"){
             console.log("hhhh");
             // 如果是复选框  接收id  Dom数据 以及索引

@@ -15,6 +15,7 @@ export default class Axios{
                   value.key=index;
                   return value;
                 })
+
                 _this.setState({
                       list,
                       pagination:utils.pagination(res,current=>{
