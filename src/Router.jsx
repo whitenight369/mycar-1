@@ -20,6 +20,10 @@ import City from './pages/city/index';
 import Order from './pages/order/index';
 import Detail from './pages/order/Detail';
 import BikeMap from './pages/map/BikeMap';
+import Bar from './pages/echarts/bar';
+import Pie from './pages/echarts/pie';
+import Line from './pages/echarts/line';
+import Rich from './pages/rich';
 import Common from './Common';
 import User from './pages/user';
 export default class IRouter extends Component {
@@ -52,6 +56,10 @@ export default class IRouter extends Component {
                             <Route path="/order" component={Order} />
                             <Route path="/user" component={User} />
                             <Route path="/bikeMap" component={BikeMap} />
+                            <Route path="/charts/bar" component={Bar} />
+                            <Route path="/charts/pie" component={Pie} />
+                            <Route path="/charts/line" component={Line} />
+                            <Route path="/rich" component={Rich} />
                             <Route  component={NoMatch} />
                             </Switch>
                         </Admin>
