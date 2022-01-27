@@ -1,16 +1,33 @@
 import React, { Component } from 'react'
 import { Menu } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux';
+import { switchMenu } from '../../redux/action';
 import menuList from './../../config/menuConfig'
 import './index.less';
 
 const { SubMenu } = Menu;
-export default class NavLeft extends Component {
+class NavLeft extends Component {
+    state={
+        currentKey:""
+    }
     componentWillMount(){
         const menuTreeNode=this.renderMenu(menuList);
-        this.setState({menuTreeNode})
+        let currentKey=window.location.hash.replace(/#|\?.*$/g,"");
+        this.setState({menuTreeNode,currentKey})
     }
+
+    // 处理点击事件
+    handleClick=(item)=>{
+        console.log(item);
+        const {dispatch}=this.props;
+        dispatch(switchMenu(item.item.props.title));
+        console.log(item.item.props.title);
+        this.setState({
+            currentKey:item.key
+        })
+    }
+
     renderMenu=(data)=>{
             return data.map(item=>{
             if(item.children){
@@ -23,7 +40,7 @@ export default class NavLeft extends Component {
             }else{
                 // 没有子菜单证明是二级菜单 直接输出DOM就ok
               return  (
-              <Menu.Item title={item.title} key={item.key} >
+              <Menu.Item title={item.title}  key={item.key} >
                   <NavLink to={item.key}>{item.title}</NavLink>
                   {/* {item.title} */}
               </Menu.Item>)
@@ -39,6 +56,10 @@ export default class NavLeft extends Component {
                 </div>
                 <Menu
                     theme='dark'
+                    // selectedKeys={this.state.currentKey}
+                    onClick={e=>{
+                        this.handleClick(e)
+                    }}
                 >
                     {this.state.menuTreeNode}
                     
@@ -47,3 +68,4 @@ export default class NavLeft extends Component {
         )
     }
 }
+export default connect()(NavLeft)

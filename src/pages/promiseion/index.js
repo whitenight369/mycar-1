@@ -6,7 +6,6 @@ import axios  from './../../axios';
 import menuList from './../../config/menuConfig';
 let Option=Select.Option;
 let FormItem=Form.Item;
-let TreeNode=Tree.TreeNode;
 export default class PermissionUser extends Component {
     state={isRoleVisible:false,isPermissionVisible:false,isUserVisible:false}    
 
