@@ -83,7 +83,7 @@ export default class Register extends Component {
                             </RadioGroup>
                         </FormItem>
                         <FormItem
-                            label="性别" 
+                            label="年龄" 
                         >
                             <InputNumber defaultValue={18} min={1} max={118} />
                         </FormItem>
@@ -115,7 +115,7 @@ export default class Register extends Component {
                         </FormItem>
                         <FormItem
                             label="出生日期" 
-                            name="IsMerry"
+                            name="birthday"
                         >
                             <Space direction="vertical">
                                 <DatePicker showTime defaultValue={moment('2000-10-21 00:00:00')} format="YYYY-MM-DD HH:mm:ss"/>

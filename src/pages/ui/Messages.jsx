@@ -1,7 +1,7 @@
 import { Button, Card, message } from 'antd'
 import React, { Component } from 'react'
 
-export default class Message extends Component {
+export default class Messages extends Component {
     showMessage=(type)=>{
         message[type]("React晋级失败")
     }

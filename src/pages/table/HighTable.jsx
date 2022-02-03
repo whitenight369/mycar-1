@@ -8,7 +8,6 @@ export default class HighTable extends Component {
         page:1
     }
     request=()=>{
-        let _this=this;
         axios.ajax({
             url:"/table/high",
             data:{

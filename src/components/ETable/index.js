@@ -1,12 +1,11 @@
 import React from 'react';
-import utils from '../../utils/utils';
 import { Table } from 'antd';
 export default class ETable extends React.Component{
 
     onRowClick=(record,index)=>{
         let rowSelection= this.props.rowSelection;   
         if(rowSelection=="checkbox"){
-            console.log("hhhh");
+            // console.log("hhhh");
             // 如果是复选框  接收id  Dom数据 以及索引
             let selectedRowKeys=this.props.selectedRowKeys;//索引
             let selectedItem=this.props.selectedItem;//dom数据
@@ -32,7 +31,7 @@ export default class ETable extends React.Component{
         }else{
             let selectedRowKeys=[index];
             let selectedItem=record;
-            this.props.updateSelectedItem(selectedRowKeys,selectedItem)
+            this.props.updateSelectedItem(selectedRowKeys,selectedItem);
         }
 
     }

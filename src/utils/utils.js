@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {Select} from 'antd';
 let Option=Select.Option;
 export default{

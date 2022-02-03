@@ -99,7 +99,6 @@ export default class Basic extends Component {
             {title:"生日",dataIndex:"birthday"},
             {title:"早期时间",dataIndex:"time"}
         ]
-
        
 
         return (
